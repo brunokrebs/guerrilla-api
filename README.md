@@ -24,8 +24,13 @@ the origin of your requests. Besides that, it also expects you to provide an
 
 ~~~
 var Guerrilla = require('guerrilla-api');
-
 var guerrillaApi = new Guerrilla('127.0.0.1', 'automated-test-agent');
+~~~
+
+From that, we are now ready to make our first call to Guerrilla api. Let's see
+what e-mail address they give us.
+
+~~~
 guerrillaApi.getEmailAddress(function(err, address) {
   if (err) {
     console.log('Holly crap, something went wrong!' + err);
