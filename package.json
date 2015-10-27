@@ -4,7 +4,7 @@
   "description": "Guerrilla-api is a node module that wraps the guerrilla api (I have chosen an amazing and creative name, don't you think so?) to smooth the comunication of your app/module with their service.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp"
   },
   "repository": {
     "type": "git",
