@@ -32,10 +32,24 @@ what e-mail address they give us.
 
 ```js
 guerrillaApi.getEmailAddress(function(err, address) {
-  if (err) {
-    console.log('Holly crap, something went wrong!' + err);
-  } else {
-    console.log('As I expected. My new temp e-mail is: ' + address);
-  }
+	if (err) {
+		console.log('Holly crap, something went wrong!' + err);
+	} else {
+		console.log('As I expected. My new temp e-mail is: ' + address);
+	}
 });
 ```
+
+Well, maybe you don't like the e-mail address randomly provided by Guerrilla.
+So, lets create one of our own.
+
+```js
+guerrillaApi.setEmailAddress(desiredUsernameEmail, function (err, address) {
+	if (err) {
+		console.log('Weirdooo, something went wrong!' + err);
+	} else {
+		console.log('Nice, I have a new e-mail address. Check it out: ' + address);
+	}
+});
+```
+
