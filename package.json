@@ -1,33 +1,33 @@
 {
-	"name": "guerrilla-api",
-	"version": "0.0.2",
-	"description": "Guerrilla-api is a node module that wraps the guerrilla api (I have chosen an amazing and creative name, don't you think so?) to smooth the comunication of your app/module with their service.",
-	"main": "index.js",
-	"scripts": {
-		"test": "gulp"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/brunokrebs/guerrilla-api.git"
-	},
-	"keywords": [
-		"guerrilla",
-		"api",
-		"email"
-	],
-	"author": "Bruno Krebs <me@brunokrebs.com> (http://www.brunokrebs.com/)",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/brunokrebs/guerrilla-api/issues"
-	},
-	"dependencies": {
-		"request": "^2.65.0",
-		"string": "^3.3.1",
-		"validator": "^4.2.1"
-	},
-	"devDependencies": {
-		"gulp": "^3.9.0",
-		"gulp-mocha": "^2.1.3",
-		"mocha": "^2.3.3"
-	}
+  "name": "guerrilla-api",
+  "version": "0.1.0",
+  "description": "Guerrilla-api is a node module that wraps the guerrilla api (I have chosen an amazing and creative name, don't you think so?) to smooth the comunication of your app/module with their service.",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brunokrebs/guerrilla-api.git"
+  },
+  "keywords": [
+    "guerrilla",
+    "api",
+    "email"
+  ],
+  "author": "Bruno Krebs <me@brunokrebs.com> (http://www.brunokrebs.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brunokrebs/guerrilla-api/issues"
+  },
+  "dependencies": {
+    "request": "^2.65.0",
+    "string": "^3.3.1",
+    "validator": "^4.2.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.1.3",
+    "mocha": "^2.3.3"
+  }
 }
