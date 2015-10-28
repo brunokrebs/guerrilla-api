@@ -40,37 +40,54 @@ var invalidUserAgents = [
 	' '
 ];
 
+var invalidUsernames = [
+	null,
+	undefined,
+	'',
+	'\'',
+	'@',
+	'%',
+	'%$#@',
+	'a_a'
+];
+
+var validUsernames = [
+	'bruno',
+	'a',
+	'a.',
+	'a.nice',
+	'a.nice-username',
+	'weird0-username-',
+	'0',
+	'013554678948546132646564',
+	'.aname'
+];
+
 describe('Test suite for guerrilla-api wrapper', function () {
-	it('should NOT accept invalid ip addresses', function (done) {
-		invalidIpAddresses.forEach(function (ip, idx) {
+	invalidIpAddresses.forEach(function (ip) {
+		it('should NOT accept invalid ip addresses', function (done) {
 			assert.throws(function () {
 				guerrillaApi = new Guerrilla(ip, 'automated-test-agent')
 			}, /address/);
-			if (idx === invalidIpAddresses.length - 1) {
-				done();
-			}
+			done();
 		});
 	});
 
-	it('should accept valid ip addresses', function (done) {
-		validIpAddresses.forEach(function (ip, idx) {
+	validIpAddresses.forEach(function (ip) {
+		it('should accept valid ip addresses', function (done) {
 			assert.doesNotThrow(function () {
 				guerrillaApi = new Guerrilla(ip, 'automated-test-agent')
 			});
-			if (idx === validIpAddresses.length - 1) {
-				done();
-			}
+			done();
 		});
 	});
 
-	it('should NOT accept invalid user agents', function (done) {
-		invalidUserAgents.forEach(function (userAgent, idx) {
+	invalidUserAgents.forEach(function (userAgent) {
+		it('should NOT accept invalid user agents', function (done) {
 			assert.throws(function () {
 				guerrillaApi = new Guerrilla('127.0.0.1', userAgent)
 			}, /agent/);
-			if (idx === invalidUserAgents.length - 1) {
-				done();
-			}
+			done();
 		});
 	});
 
@@ -89,12 +106,52 @@ describe('Test suite for guerrilla-api wrapper', function () {
 		});
 	});
 
-	it('should retrieve the e-mail for the second time really fast', function (done) {
-		this.timeout(2);
+	it('should retrieve the e-mail for the second time really fast', function () {
+		this.timeout(20);
 		guerrillaApi.getEmailAddress(function (err, address) {
 			assert.equal(err, null, 'Unexpected error occurred: ' + err);
 			assert.notEqual(address, null, 'E-mail address should not be null');
+		});
+	});
+
+	it('should be able to change the e-mail address', function() {
+		// sometimes internet connection works as a pitfall
+		this.timeout(5000);
+
+		var desiredUsernameEmail = 'mytestuser';
+		guerrillaApi.setEmailAddress(desiredUsernameEmail, function (err, address) {
+			assert.equal(err, null, 'Unexpected error occurred: ' + err);
+			assert.notEqual(address, null, 'E-mail address should not be null');
+			assert.equal(address, desiredUsernameEmail + '@guerrillamailblock.com',
+						'E-mail is different than expected. Guerrilla returned ' + address);
+			guerrillaApi.getEmailAddress(function(err, address) {
+				assert.equal(err, null, 'Unexpected error occurred: ' + err);
+				assert.equal(address, desiredUsernameEmail + '@guerrillamailblock.com',
+							'E-mail is different than expected. Guerrilla returned ' + address);
+			});
+		});
+	});
+
+	invalidUsernames.forEach(function (username) {
+		it('should NOT accept invalid usernames', function (done) {
+			assert.throws(function () {
+				guerrillaApi.setEmailAddress(username);
+			}, /name/, 'Username: ' + username);
 			done();
+		});
+	});
+
+	validUsernames.forEach(function(username) {
+		it('should accept valid username ' + username, function(done) {
+			// sometimes internet connection works as a pitfall
+			this.timeout(5000);
+			assert.doesNotThrow(function () {
+				guerrillaApi.setEmailAddress(username, function (err, address) {
+					assert.equal(address, username + '@guerrillamailblock.com',
+						'E-mail is different than expected. Guerrilla returned ' + address);
+					done();
+				});
+			});
 		});
 	});
 });
