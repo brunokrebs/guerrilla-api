@@ -22,15 +22,15 @@ First things first. Guerrilla Mail api expects you to pass an ip address that is
 the origin of your requests. Besides that, it also expects you to provide an
 [user agent](https://en.wikipedia.org/wiki/User_agent). So there we go:
 
-~~~
+```js
 var Guerrilla = require('guerrilla-api');
 var guerrillaApi = new Guerrilla('127.0.0.1', 'automated-test-agent');
-~~~
+```
 
 From that, we are now ready to make our first call to Guerrilla api. Let's see
 what e-mail address they give us.
 
-~~~
+```js
 guerrillaApi.getEmailAddress(function(err, address) {
   if (err) {
     console.log('Holly crap, something went wrong!' + err);
@@ -38,4 +38,4 @@ guerrillaApi.getEmailAddress(function(err, address) {
     console.log('As I expected. My new temp e-mail is: ' + address);
   }
 });
-~~~
+```
