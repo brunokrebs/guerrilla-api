@@ -1,6 +1,6 @@
 {
   "name": "guerrilla-api",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Guerrilla-api is a node module that wraps the guerrilla api (I have chosen an amazing and creative name, don't you think so?) to smooth the comunication of your app/module with their service.",
   "main": "index.js",
   "scripts": {
