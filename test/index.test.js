@@ -89,13 +89,12 @@ describe('Test suite for guerrilla-api wrapper', function () {
 		});
 	});
 
-	it('should retrieve the e-mail for the second time really fast',
-		function (done) {
-			this.timeout(2);
-			guerrillaApi.getEmailAddress(function (err, address) {
-				assert.equal(err, null, 'Unexpected error occurred: ' + err);
-				assert.notEqual(address, null, 'E-mail address should not be null');
-				done();
-			});
+	it('should retrieve the e-mail for the second time really fast', function (done) {
+		this.timeout(2);
+		guerrillaApi.getEmailAddress(function (err, address) {
+			assert.equal(err, null, 'Unexpected error occurred: ' + err);
+			assert.notEqual(address, null, 'E-mail address should not be null');
+			done();
 		});
+	});
 });
