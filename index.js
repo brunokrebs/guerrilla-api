@@ -1,6 +1,14 @@
 var request = require('request').defaults({jar: true});
+var validator = require('validator');
+var S = require('string');
 
 function Guerrilla(ip, agent) {
+  if ( ! validator.isIP(ip)) {
+    throw new Error('Invalid ip address: ' + ip);
+  }
+  if (S(agent).isEmpty()) {
+    throw new Error('Empty user agent is not allowed.');
+  }
   var self = this;
   self.ip = ip;
   self.agent = agent;
