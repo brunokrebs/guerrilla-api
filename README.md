@@ -58,7 +58,7 @@ Now that we have a nice e-mail address, let's check what do we have in our inbox
 ```js
 guerrillaApi.checkEmail(function (err, emails) {
 	if (err) {
-		console.log('Noooooo, an error? It must be a solar storm. Let's see: '
+		console.log('Noooooo, an error? It must be a solar storm. Let\'s see: '
 					+ err);
 	} else {
 		emails.forEach(function(email) {
