@@ -48,8 +48,24 @@ guerrillaApi.setEmailAddress(desiredUsernameEmail, function (err, address) {
 	if (err) {
 		console.log('Weirdooo, something went wrong!' + err);
 	} else {
-		console.log('Nice, I have a new e-mail address. Check it out: ' + address);
+		console.log('Nice, I have a new e-mail address. Check it out: '
+				+ address);
 	}
 });
 ```
 
+Now that we have a nice e-mail address, let's check what do we have in our inbox:
+```js
+guerrillaApi.checkEmail(function (err, emails) {
+	if (err) {
+		console.log('Noooooo, an error? It must be a solar storm. Let's see: '
+					+ err);
+	} else {
+		emails.forEach(function(email) {
+			console.log(email.mail_from +
+				' sent me an e-mail with the following subject: '
+				+ mail.mail_subject);
+		});
+	}
+});
+```

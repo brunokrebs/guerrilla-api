@@ -72,7 +72,23 @@ function Guerrilla(ip, agent) {
 				cb(null, self.email);
 			}
 		});
-	}
+	};
+
+	self.checkEmail = function(cb) {
+		var endpoint = getEndpoint('get_email_list') + '&offset=0';
+
+		request(endpoint, function(err, res, body) {
+			if (err) {
+				cb(err);
+			}
+			try {
+				var resObj = JSON.parse(body);
+				cb(null, resObj.list);
+			} catch (parsingError) {
+				cb(parsingError);
+			}
+		});
+	};
 }
 
 module.exports = Guerrilla;
